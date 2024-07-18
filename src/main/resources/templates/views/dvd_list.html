@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>[[${title}]]</h1>
+    <p>[[${dvd1.getTitle()}]]</p> <!-- 이런 방법 또는-->
+    <p>[[${dvd1['producer']}]]</p> <!-- 이런 방법으로도 사용 가능하다-->
+    <p>[[${dvd1.publisher}]]</p> <!-- 보통 이런 방법으로 사용 -->
+
+    <p>[[${names[0]}]]</p> <!-- names 리스트의 0번째 인덱스 -->
+    <p>[[${names[1]}]]</p> <!-- names 리스트의 1번째 인덱스 -->
+    <p>[[${names[2]}]]</p> <!-- names 리스트의 2번째 인덱스 -->
+
+    <p>[[${dvdList[0].title}]]</p>
+    <p>[[${dvdList[1].producer}]]</p>
+    <p>[[${dvdList[2].publisher}]]</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>index</th>
+                <th>title</th>
+                <th>producer</th>
+                <th>publisher</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="dvd, i : ${dvdList}"> <!-- 반복문 형식 -->
+                <td>[[${state.index}]]</td> <!-- state라는 객체 안에 count를 사용하겠다 -->
+                <td>[[${dvd.title}]]</td>
+                <td>[[${dvd.producer}]]</td>
+                <td>[[${dvd.publisher}]]</td>
+            </tr>
+        </tbody>
+    </table>
+    <p th:each="name, state : ${names}">인덱스: [[${state.index}]] 순번: [[${state.count}]] 이름: [[${name}]]</p>
+
+</body>
+</html>
